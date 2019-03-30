@@ -10,6 +10,7 @@
     <Compile Include="OrderByTests.cs" />
     <Compile Include="ToHashSetTests.cs" />
     <Compile Include="SelectManyTests.netcoreapp.cs" />
+    <Compile Include="ZipTests.netcoreapp.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AggregateTests.cs" />
