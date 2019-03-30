@@ -17,6 +17,8 @@ namespace System.Linq.Tests
                     select x;
 
             Assert.Equal(q.ElementAt(3), q.ElementAt(3));
+            Assert.Equal(q.ElementAt((Index)3), q.ElementAt(3));
+            Assert.Equal(q.ElementAt(^ 3), q.ElementAt(^ 3));
         }
 
         [Fact]
@@ -27,6 +29,8 @@ namespace System.Linq.Tests
                     select x;
 
             Assert.Equal(q.ElementAt(4), q.ElementAt(4));
+            Assert.Equal(q.ElementAt((Index)4), q.ElementAt((Index)4));
+            Assert.Equal(q.ElementAt(^ 4), q.ElementAt(^ 4));
         }
 
         public static IEnumerable<object[]> TestData()
@@ -44,6 +48,7 @@ namespace System.Linq.Tests
         public void ElementAt(IEnumerable<int> source, int index, int expected)
         {
             Assert.Equal(expected, source.ElementAt(index));
+            Assert.Equal(expected, source.ElementAt((Index)index));
         }
 
         [Theory]
@@ -51,6 +56,15 @@ namespace System.Linq.Tests
         public void ElementAtRunOnce(IEnumerable<int> source, int index, int expected)
         {
             Assert.Equal(expected, source.RunOnce().ElementAt(index));
+            if (index >= 0)
+            {
+                Assert.Equal(expected, source.RunOnce().ElementAt((Index)index));
+            }
+
+            if (source.RunOnce().Count() - index >= 0)
+            {
+                Assert.Equal(expected, source.RunOnce().ElementAt(new Index(source.RunOnce().Count() - index, fromEnd: true)));
+            }
         }
 
         [Fact]
@@ -70,15 +84,21 @@ namespace System.Linq.Tests
         public void NullableArray_ValidIndex_ReturnsCorrectObject()
         {
             int?[] source = { 9, 8, null, -5, 10 };
-            
+
             Assert.Null(source.ElementAt(2));
+            Assert.Null(source.ElementAt((Index)2));
+            Assert.Null(source.ElementAt(^ 3));
             Assert.Equal(-5, source.ElementAt(3));
+            Assert.Equal(-5, source.ElementAt((Index)3));
+            Assert.Equal(-5, source.ElementAt(^ 2));
         }
 
         [Fact]
         public void NullSource_ThrowsArgumentNullException()
         {
             AssertExtensions.Throws<ArgumentNullException>("source", () => ((IEnumerable<int>)null).ElementAt(2));
+            AssertExtensions.Throws<ArgumentNullException>("source", () => ((IEnumerable<int>)null).ElementAt((Index)2));
+            AssertExtensions.Throws<ArgumentNullException>("source", () => ((IEnumerable<int>)null).ElementAt(^ 2));
         }
     }
 }

@@ -259,12 +259,33 @@ namespace System.Linq
              (s_ElementAt_TSource_2 = new Func<IQueryable<object>, int, object>(Queryable.ElementAt).GetMethodInfo().GetGenericMethodDefinition()))
               .MakeGenericMethod(TSource);
 
+        private static MethodInfo s_ElementAt_TSource_2_Index;
+
+        public static MethodInfo ElementAt_TSource_2_Index(Type TSource) =>
+            (s_ElementAt_TSource_2_Index ??
+             (s_ElementAt_TSource_2_Index = new Func<IQueryable<object>, Index, object>(Queryable.ElementAt).GetMethodInfo().GetGenericMethodDefinition()))
+            .MakeGenericMethod(TSource);
+
         private static MethodInfo s_ElementAtOrDefault_TSource_2;
 
         public static MethodInfo ElementAtOrDefault_TSource_2(Type TSource) =>
              (s_ElementAtOrDefault_TSource_2 ??
              (s_ElementAtOrDefault_TSource_2 = new Func<IQueryable<object>, int, object>(Queryable.ElementAtOrDefault).GetMethodInfo().GetGenericMethodDefinition()))
               .MakeGenericMethod(TSource);
+
+        private static MethodInfo s_ElementAtOrDefault_TSource_2_Index;
+
+        public static MethodInfo ElementAtOrDefault_TSource_2_Index(Type TSource) =>
+            (s_ElementAtOrDefault_TSource_2_Index ??
+             (s_ElementAtOrDefault_TSource_2_Index = new Func<IQueryable<object>, Index, object>(Queryable.ElementAtOrDefault).GetMethodInfo().GetGenericMethodDefinition()))
+            .MakeGenericMethod(TSource);
+
+        private static MethodInfo s_ElementsIn_TSource_2;
+
+        public static MethodInfo ElementsIn_TSource_2(Type TSource) =>
+            (s_ElementsIn_TSource_2 ??
+             (s_ElementsIn_TSource_2 = new Func<IQueryable<object>, Range, IQueryable<object>>(Queryable.ElementsIn).GetMethodInfo().GetGenericMethodDefinition()))
+            .MakeGenericMethod(TSource);
 
         private static MethodInfo s_Except_TSource_2;
 
@@ -622,6 +643,13 @@ namespace System.Linq
              (s_SkipWhile_Index_TSource_2 ??
              (s_SkipWhile_Index_TSource_2 = new Func<IQueryable<object>, Expression<Func<object, int, bool>>, IQueryable<object>>(Queryable.SkipWhile).GetMethodInfo().GetGenericMethodDefinition()))
               .MakeGenericMethod(TSource);
+
+        private static MethodInfo s_Slice_TSource_2;
+
+        public static MethodInfo Slice_TSource_2(Type TSource) =>
+            (s_Slice_TSource_2 ??
+             (s_Slice_TSource_2 = new Func<IQueryable<object>, Range, IQueryable<object>>(Queryable.Slice).GetMethodInfo().GetGenericMethodDefinition()))
+            .MakeGenericMethod(TSource);
 
         private static MethodInfo s_Sum_Int32_1;
 

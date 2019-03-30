@@ -856,6 +856,19 @@ namespace System.Linq
                     ));
         }
 
+        public static TSource ElementAt<TSource>(this IQueryable<TSource> source, Index index)
+        {
+            if (source == null)
+                // throw Error.ArgumentNull(nameof(source));
+                throw new ArgumentNullException(nameof(source));
+            return source.Provider.Execute<TSource>(
+                Expression.Call(
+                    null,
+                    CachedReflectionInfo.ElementAt_TSource_2_Index(typeof(TSource)),
+                    source.Expression, Expression.Constant(index)
+                ));
+        }
+
         public static TSource ElementAtOrDefault<TSource>(this IQueryable<TSource> source, int index)
         {
             if (source == null)
@@ -866,6 +879,45 @@ namespace System.Linq
                     CachedReflectionInfo.ElementAtOrDefault_TSource_2(typeof(TSource)),
                     source.Expression, Expression.Constant(index)
                     ));
+        }
+
+        public static TSource ElementAtOrDefault<TSource>(this IQueryable<TSource> source, Index index)
+        {
+            if (source == null)
+                // throw Error.ArgumentNull(nameof(source));
+                throw new ArgumentNullException(nameof(source));
+            return source.Provider.Execute<TSource>(
+                Expression.Call(
+                    null,
+                    CachedReflectionInfo.ElementAtOrDefault_TSource_2_Index(typeof(TSource)),
+                    source.Expression, Expression.Constant(index)
+                ));
+        }
+
+        public static IQueryable<TSource> ElementsIn<TSource>(this IQueryable<TSource> source, Range range)
+        {
+            if (source == null)
+                // throw Error.ArgumentNull(nameof(source));
+                throw new ArgumentNullException(nameof(source));
+
+            return source.Provider.CreateQuery<TSource>(
+                Expression.Call(
+                    null,
+                    CachedReflectionInfo.ElementsIn_TSource_2(typeof(TSource)),
+                    source.Expression, Expression.Constant(range)));
+        }
+
+        public static IQueryable<TSource> Slice<TSource>(this IQueryable<TSource> source, Range range)
+        {
+            if (source == null)
+                // throw Error.ArgumentNull(nameof(source));
+                throw new ArgumentNullException(nameof(source));
+
+            return source.Provider.CreateQuery<TSource>(
+                Expression.Call(
+                    null,
+                    CachedReflectionInfo.Slice_TSource_2(typeof(TSource)),
+                    source.Expression, Expression.Constant(range)));
         }
 
         public static IQueryable<TSource> DefaultIfEmpty<TSource>(this IQueryable<TSource> source)

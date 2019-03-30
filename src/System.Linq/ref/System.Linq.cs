@@ -18,6 +18,7 @@ namespace System.Linq
         public static bool Any<TSource>(this System.Collections.Generic.IEnumerable<TSource> source, System.Func<TSource, bool> predicate) { throw null; }
         public static System.Collections.Generic.IEnumerable<TSource> Append<TSource>(this System.Collections.Generic.IEnumerable<TSource> source, TSource element) { throw null; }
         public static System.Collections.Generic.IEnumerable<TSource> AsEnumerable<TSource>(this System.Collections.Generic.IEnumerable<TSource> source) { throw null; }
+        public static System.Collections.Generic.IEnumerable<int> AsEnumerable(this Range source) { throw null; }
         public static decimal Average(this System.Collections.Generic.IEnumerable<decimal> source) { throw null; }
         public static double Average(this System.Collections.Generic.IEnumerable<double> source) { throw null; }
         public static double Average(this System.Collections.Generic.IEnumerable<int> source) { throw null; }
@@ -49,7 +50,10 @@ namespace System.Linq
         public static System.Collections.Generic.IEnumerable<TSource> Distinct<TSource>(this System.Collections.Generic.IEnumerable<TSource> source) { throw null; }
         public static System.Collections.Generic.IEnumerable<TSource> Distinct<TSource>(this System.Collections.Generic.IEnumerable<TSource> source, System.Collections.Generic.IEqualityComparer<TSource> comparer) { throw null; }
         public static TSource ElementAt<TSource>(this System.Collections.Generic.IEnumerable<TSource> source, int index) { throw null; }
+        public static TSource ElementAt<TSource>(this System.Collections.Generic.IEnumerable<TSource> source, Index index) { throw null; }
         public static TSource ElementAtOrDefault<TSource>(this System.Collections.Generic.IEnumerable<TSource> source, int index) { throw null; }
+        public static TSource ElementAtOrDefault<TSource>(this System.Collections.Generic.IEnumerable<TSource> source, Index index) { throw null; }
+        public static System.Collections.Generic.IEnumerable<TSource> ElementsIn<TSource>(this System.Collections.Generic.IEnumerable<TSource> source, Range range) { throw null; }
         public static System.Collections.Generic.IEnumerable<TResult> Empty<TResult>() { throw null; }
         public static System.Collections.Generic.IEnumerable<TSource> Except<TSource>(this System.Collections.Generic.IEnumerable<TSource> first, System.Collections.Generic.IEnumerable<TSource> second) { throw null; }
         public static System.Collections.Generic.IEnumerable<TSource> Except<TSource>(this System.Collections.Generic.IEnumerable<TSource> first, System.Collections.Generic.IEnumerable<TSource> second, System.Collections.Generic.IEqualityComparer<TSource> comparer) { throw null; }
@@ -128,6 +132,7 @@ namespace System.Linq
         public static System.Linq.IOrderedEnumerable<TSource> OrderByDescending<TSource, TKey>(this System.Collections.Generic.IEnumerable<TSource> source, System.Func<TSource, TKey> keySelector, System.Collections.Generic.IComparer<TKey> comparer) { throw null; }
         public static System.Collections.Generic.IEnumerable<TSource> Prepend<TSource>(this System.Collections.Generic.IEnumerable<TSource> source, TSource element) { throw null; }
         public static System.Collections.Generic.IEnumerable<int> Range(int start, int count) { throw null; }
+        public static System.Collections.Generic.IEnumerable<int> Range(Range range) { throw null; }
         public static System.Collections.Generic.IEnumerable<TResult> Repeat<TResult>(TResult element, int count) { throw null; }
         public static System.Collections.Generic.IEnumerable<TSource> Reverse<TSource>(this System.Collections.Generic.IEnumerable<TSource> source) { throw null; }
         public static System.Collections.Generic.IEnumerable<TResult> Select<TSource, TResult>(this System.Collections.Generic.IEnumerable<TSource> source, System.Func<TSource, TResult> selector) { throw null; }
@@ -146,6 +151,7 @@ namespace System.Linq
         public static System.Collections.Generic.IEnumerable<TSource> SkipLast<TSource>(this System.Collections.Generic.IEnumerable<TSource> source, int count) { throw null; }
         public static System.Collections.Generic.IEnumerable<TSource> SkipWhile<TSource>(this System.Collections.Generic.IEnumerable<TSource> source, System.Func<TSource, bool> predicate) { throw null; }
         public static System.Collections.Generic.IEnumerable<TSource> SkipWhile<TSource>(this System.Collections.Generic.IEnumerable<TSource> source, System.Func<TSource, int, bool> predicate) { throw null; }
+        public static System.Collections.Generic.IEnumerable<TSource> Slice<TSource>(this System.Collections.Generic.IEnumerable<TSource> source, Range range) { throw null; }
         public static decimal Sum(this System.Collections.Generic.IEnumerable<decimal> source) { throw null; }
         public static double Sum(this System.Collections.Generic.IEnumerable<double> source) { throw null; }
         public static int Sum(this System.Collections.Generic.IEnumerable<int> source) { throw null; }

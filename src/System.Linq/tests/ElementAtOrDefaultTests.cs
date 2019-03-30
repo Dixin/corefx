@@ -17,6 +17,8 @@ namespace System.Linq.Tests
                     select x;
 
             Assert.Equal(q.ElementAtOrDefault(3), q.ElementAtOrDefault(3));
+            Assert.Equal(q.ElementAtOrDefault((Index)3), q.ElementAtOrDefault((Index)3));
+            Assert.Equal(q.ElementAtOrDefault(^ 3), q.ElementAtOrDefault(^ 3));
         }
 
         [Fact]
@@ -27,6 +29,8 @@ namespace System.Linq.Tests
                     select x;
 
             Assert.Equal(q.ElementAtOrDefault(4), q.ElementAtOrDefault(4));
+            Assert.Equal(q.ElementAtOrDefault((Index)4), q.ElementAtOrDefault((Index)4));
+            Assert.Equal(q.ElementAtOrDefault(^ 4), q.ElementAtOrDefault(^ 4));
         }
 
         public static IEnumerable<object[]> TestData()
@@ -50,6 +54,15 @@ namespace System.Linq.Tests
         public void ElementAtOrDefault(IEnumerable<int> source, int index, int expected)
         {
             Assert.Equal(expected, source.ElementAtOrDefault(index));
+            if (index > 0)
+            {
+                Assert.Equal(expected, source.ElementAtOrDefault((Index)index));
+            }
+
+            if (source.Count() - index >= 0)
+            {
+                Assert.Equal(expected, source.ElementAtOrDefault(new Index(source.Count() - index, true)));
+            }
         }
 
         [Theory]
@@ -57,28 +70,44 @@ namespace System.Linq.Tests
         public void ElementAtOrDefaultRunOnce(IEnumerable<int> source, int index, int expected)
         {
             Assert.Equal(expected, source.RunOnce().ElementAtOrDefault(index));
+            if (index > 0)
+            {
+                Assert.Equal(expected, source.RunOnce().ElementAtOrDefault((Index)index));
+            }
+
+            if (source.Count() - index >= 0)
+            {
+                Assert.Equal(expected, source.ElementAtOrDefault(new Index(source.Count() - index, true)));
+            }
         }
 
         [Fact]
         public void NullableArray_NegativeIndex_ReturnsNull()
         {
-            int?[] source = { 9, 8 };            
+            int?[] source = { 9, 8 };
             Assert.Null(source.ElementAtOrDefault(-1));
+            Assert.Null(source.ElementAtOrDefault(^3));
         }
 
         [Fact]
         public void NullableArray_ValidIndex_ReturnsCorrectObjecvt()
         {
             int?[] source = { 9, 8, null, -5, 10 };
-            
+
             Assert.Null(source.ElementAtOrDefault(2));
+            Assert.Null(source.ElementAtOrDefault((Index)2));
+            Assert.Null(source.ElementAtOrDefault(^3));
             Assert.Equal(-5, source.ElementAtOrDefault(3));
+            Assert.Equal(-5, source.ElementAtOrDefault((Index)3));
+            Assert.Equal(-5, source.ElementAtOrDefault(^2));
         }
 
         [Fact]
         public void NullSource_ThrowsArgumentNullException()
         {
             AssertExtensions.Throws<ArgumentNullException>("source", () => ((IEnumerable<int>)null).ElementAtOrDefault(2));
+            AssertExtensions.Throws<ArgumentNullException>("source", () => ((IEnumerable<int>)null).ElementAtOrDefault((Index)2));
+            AssertExtensions.Throws<ArgumentNullException>("source", () => ((IEnumerable<int>)null).ElementAtOrDefault(^2));
         }
     }
 }

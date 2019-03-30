@@ -13,6 +13,8 @@ namespace System.Linq
 
         internal static void ThrowArgumentOutOfRangeException(ExceptionArgument argument) => throw new ArgumentOutOfRangeException(GetArgumentString(argument));
 
+        internal static void ThrowArgumentException(ExceptionArgument argument) => throw new ArgumentException(GetArgumentString(argument));
+
         internal static void ThrowMoreThanOneElementException() => throw new InvalidOperationException(SR.MoreThanOneElement);
 
         internal static void ThrowMoreThanOneMatchException() => throw new InvalidOperationException(SR.MoreThanOneMatch);
@@ -22,6 +24,8 @@ namespace System.Linq
         internal static void ThrowNoMatchException() => throw new InvalidOperationException(SR.NoMatch);
 
         internal static void ThrowNotSupportedException() => throw new NotSupportedException();
+
+        internal static void ThrowOverflowException() => throw new OverflowException();
 
         private static string GetArgumentString(ExceptionArgument argument)
         {
@@ -40,6 +44,7 @@ namespace System.Linq
                 case ExceptionArgument.outer: return nameof(ExceptionArgument.outer);
                 case ExceptionArgument.outerKeySelector: return nameof(ExceptionArgument.outerKeySelector);
                 case ExceptionArgument.predicate: return nameof(ExceptionArgument.predicate);
+                case ExceptionArgument.range: return nameof(ExceptionArgument.range);
                 case ExceptionArgument.resultSelector: return nameof(ExceptionArgument.resultSelector);
                 case ExceptionArgument.second: return nameof(ExceptionArgument.second);
                 case ExceptionArgument.selector: return nameof(ExceptionArgument.selector);
@@ -66,6 +71,7 @@ namespace System.Linq
         outer,
         outerKeySelector,
         predicate,
+        range,
         resultSelector,
         second,
         selector,

@@ -77,7 +77,10 @@ namespace System.Linq
         public static System.Linq.IQueryable<TSource> Distinct<TSource>(this System.Linq.IQueryable<TSource> source) { throw null; }
         public static System.Linq.IQueryable<TSource> Distinct<TSource>(this System.Linq.IQueryable<TSource> source, System.Collections.Generic.IEqualityComparer<TSource> comparer) { throw null; }
         public static TSource ElementAt<TSource>(this System.Linq.IQueryable<TSource> source, int index) { throw null; }
+        public static TSource ElementAt<TSource>(this IQueryable<TSource> source, Index index) { throw null; }
         public static TSource ElementAtOrDefault<TSource>(this System.Linq.IQueryable<TSource> source, int index) { throw null; }
+        public static TSource ElementAtOrDefault<TSource>(this IQueryable<TSource> source, Index index) { throw null; }
+        public static IQueryable<TSource> ElementsIn<TSource>(this IQueryable<TSource> source, Range range) { throw null; }
         public static System.Linq.IQueryable<TSource> Except<TSource>(this System.Linq.IQueryable<TSource> source1, System.Collections.Generic.IEnumerable<TSource> source2) { throw null; }
         public static System.Linq.IQueryable<TSource> Except<TSource>(this System.Linq.IQueryable<TSource> source1, System.Collections.Generic.IEnumerable<TSource> source2, System.Collections.Generic.IEqualityComparer<TSource> comparer) { throw null; }
         public static TSource First<TSource>(this System.Linq.IQueryable<TSource> source) { throw null; }
@@ -131,6 +134,7 @@ namespace System.Linq
         public static System.Linq.IQueryable<TSource> SkipLast<TSource>(this System.Linq.IQueryable<TSource> source, int count) { throw null; }
         public static System.Linq.IQueryable<TSource> SkipWhile<TSource>(this System.Linq.IQueryable<TSource> source, System.Linq.Expressions.Expression<System.Func<TSource, bool>> predicate) { throw null; }
         public static System.Linq.IQueryable<TSource> SkipWhile<TSource>(this System.Linq.IQueryable<TSource> source, System.Linq.Expressions.Expression<System.Func<TSource, int, bool>> predicate) { throw null; }
+        public static IQueryable<TSource> Slice<TSource>(this IQueryable<TSource> source, Range range) { throw null; }
         public static decimal Sum(this System.Linq.IQueryable<decimal> source) { throw null; }
         public static double Sum(this System.Linq.IQueryable<double> source) { throw null; }
         public static int Sum(this System.Linq.IQueryable<int> source) { throw null; }

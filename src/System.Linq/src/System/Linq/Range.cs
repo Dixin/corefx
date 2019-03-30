@@ -25,6 +25,26 @@ namespace System.Linq
             return new RangeIterator(start, count);
         }
 
+        public static IEnumerable<int> Range(Range range)
+        {
+            Index startIndex = range.Start;
+            Index endIndex = range.End;
+            int firstValue = startIndex.IsFromEnd ? int.MaxValue - startIndex.Value + 1 : startIndex.Value;
+            int lastValue = endIndex.IsFromEnd ? int.MaxValue - endIndex.Value : endIndex.Value - 1;
+            int count = lastValue - firstValue + 1;
+            if (count < 0)
+            {
+                ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument.range);
+            }
+
+            if (lastValue == firstValue - 1)
+            {
+                return Empty<int>();
+            }
+
+            return new RangeIterator(firstValue, count);
+        }
+
         /// <summary>
         /// An iterator that yields a range of consecutive integers.
         /// </summary>
